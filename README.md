@@ -10,3 +10,4 @@ Technologies includes:
 - TMDB Api
 - React reveal
 - Code Splitting
+- SSR
