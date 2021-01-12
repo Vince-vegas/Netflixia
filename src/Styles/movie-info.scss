@@ -1,0 +1,197 @@
+.mn-item-info {
+  min-height: 100vh;
+  padding: 80px 0 30px;
+
+  .details {
+    background: rgba(250, 189, 189, 0.05);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    min-height: 278px;
+    position: relative;
+  }
+
+  .info-row {
+    margin: 0;
+  }
+
+  .info-image {
+    box-shadow: 0px 0px 0px 1px #121212;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .img-info {
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .content-info {
+    .info-title {
+      padding-top: 0;
+      color: rgb(25, 181, 254);
+    }
+
+    .overview {
+      color: #8e95a5;
+    }
+    .sub-info {
+      color: #bdc3c7;
+      margin-bottom: 3px;
+    }
+    .sub-title {
+      color: #8e95a5;
+    }
+
+    .selection {
+      margin-right: 9px;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        content: ',';
+      }
+
+      &:last-child {
+        margin-right: 0;
+
+        &::after {
+          content: '';
+        }
+      }
+    }
+
+    .starring {
+      color: #19b5fe;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .info-buttons {
+    border-radius: 100px;
+    overflow: hidden;
+    .info-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      width: 100%;
+    }
+
+    .text-link {
+      margin-left: 10px;
+    }
+  }
+}
+
+// suggest movies
+.mn-suggested {
+  .suggested-row {
+    min-height: 540px;
+    position: relative;
+  }
+
+  .suggest-title {
+    margin: 30px 0;
+
+    h1 {
+      font-size: 22px;
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .mn-item-info {
+    .content-info {
+      font-size: 14px;
+    }
+    .details {
+      .img-info {
+        display: none;
+      }
+    }
+    .info-buttons {
+      margin-top: 20px;
+    }
+  }
+}
+
+// YOUTUBE MODALS
+
+.vd-holder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.yt-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  background-color: #333;
+}
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  max-width: 100%;
+
+  .icon-holder {
+    width: 45px;
+    position: absolute;
+    top: -4%;
+    right: -7%;
+    z-index: 1;
+    cursor: pointer;
+
+    svg {
+      fill: #fff;
+    }
+  }
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .embed-container {
+    .icon-holder {
+      position: absolute;
+      top: -20%;
+      right: 0;
+    }
+  }
+
+  .yt-box {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .embed-container {
+    .icon-holder {
+      width: 25px;
+      position: absolute;
+      top: -20%;
+      right: 0;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.pagination {
+  padding-top: 30px;
+  margin-top: auto;
+}
+
+.pgn-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .pgn-list {
+    margin: 5px;
+
+    .pgn-link {
+      min-width: 45px;
+      min-height: 45px;
+      text-align: center;
+      background-color: transparent;
+      font-size: 16px;
+
+      border-radius: 100px;
+      border: 2px solid transparent;
+
+      &:hover {
+        border-color: #4a4a4a;
+      }
+    }
+    .pgn-link-white {
+      color: #fff;
+    }
+    .pgn-link-dark {
+      color: #0f1723;
+    }
+
+    .pgn-link--active {
+      color: #57bbff;
+      border-color: #3498db !important;
+    }
+  }
+}

@@ -1,0 +1,89 @@
+// MAIN HOMEPAGE
+
+.mn-homepage {
+  .hp-row {
+    height: 100vh;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  .hp-logo {
+    min-width: 400px;
+  }
+
+  .hp-discover {
+    min-width: 280px;
+
+    .hp-btn {
+      display: block;
+      background-color: #e15b64;
+      font-weight: 400;
+      font-size: 18px;
+      letter-spacing: 2px;
+      padding: 15px;
+      transition: all 0.3s ease-out;
+
+      &:hover {
+        background-color: #19b5fe;
+      }
+    }
+  }
+
+  .hp-content {
+    max-width: 450px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff;
+    border: 7px solid transparent;
+    border-left-color: #19b5fe;
+    margin: 15px;
+
+    p {
+      color: #4a4a4a;
+      font-size: 22px;
+      font-weight: 500;
+    }
+    .link {
+      color: #57bbff;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mn-homepage {
+    .hp-content {
+      max-width: 460px;
+    }
+    .hp-discover {
+      .hp-btn {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mn-homepage {
+    .hp-content {
+      max-width: 670px;
+    }
+    .hp-discover {
+      min-width: 500px;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .mn-homepage {
+    .hp-logo {
+      min-width: 200px;
+    }
+
+    .hp-content {
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}

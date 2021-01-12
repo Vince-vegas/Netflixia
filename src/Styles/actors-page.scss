@@ -1,0 +1,42 @@
+.mn-actors {
+  min-height: 120vh;
+  position: relative;
+  padding: 130px 0 65px;
+  display: flex;
+  flex-direction: column;
+  background: rgb(242, 241, 239);
+
+  .title {
+    color: #0f1723;
+    font-weight: 600;
+  }
+
+  .actor-item {
+    padding: 0 10px;
+  }
+
+  .actor-link {
+    display: block;
+    box-shadow: 2px 2px 8px #a1abb5;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .actor-box {
+    .actor-image {
+      min-height: 230px;
+      max-height: 230px;
+      overflow: hidden;
+    }
+
+    .sub-content {
+      padding: 8px;
+      color: #0f1723;
+      text-align: center;
+      background: #fff;
+      h3 {
+        padding: 0;
+      }
+    }
+  }
+}
