@@ -8,7 +8,7 @@ const Main = () => {
       <div className="container">
         <div className="row align-center justify-center hp-row">
           <div className="hp-discover mb50">
-            <h1>Netflix</h1>
+            <h1>Netflixia</h1>
             <Link to="/home" className="btn hp-btn">
               Discover Movies
             </Link>
