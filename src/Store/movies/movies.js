@@ -36,6 +36,9 @@ const moviesSlice = createSlice({
     SORTBY_LATEST: (state) => {
       state.sorted = 'now_playing';
     },
+    SET_PAGE: (state, action) => {
+      state.page = action.payload.currentPage;
+    },
   },
   extraReducers: {
     [fetchMovies.pending]: (state) => {
@@ -55,8 +58,6 @@ const moviesSlice = createSlice({
 });
 
 const { SORTBY_POPULAR, SORTBY_RATED, SORTBY_LATEST } = moviesSlice.actions;
-
-console.log(SORTBY_POPULAR.type);
 
 const onSortPopular = () => ({ type: SORTBY_POPULAR.type });
 const onSortRated = () => ({ type: SORTBY_RATED.type });
