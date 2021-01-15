@@ -5,9 +5,8 @@ The Project is a movie browsing app.
 Technologies includes:
 
 - React
-- Loadable Components
-- Redux
+- Redux Toolkit
 - TMDB Api
 - React reveal
 - Code Splitting
-- SSR
+- react-intersection-observer
