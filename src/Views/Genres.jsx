@@ -2,29 +2,37 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchMovies } from '../Store/movies/movies';
+import {
+  fetchMovies,
+  onSortPopular,
+  onSortRated,
+  onSortLatest,
+} from '../Store/movies/movies';
 
 const Genres = () => {
-  const { pageIdParams } = useParams();
+  const { pageId } = useParams();
   const moviesContext = useSelector((state) => state.moviesState);
   const dispatch = useDispatch();
 
-  const { sorted, pageId } = moviesContext;
+  const { sorted, page, movies } = moviesContext;
 
   useEffect(() => {
     console.log(moviesContext);
-  }, [sorted, pageId]);
-
-  useEffect(() => {
-    dispatch(fetchMovies({ sorted: 'popular', pageId: pageIdParams }));
-  }, []);
+    // the * to conver string into Number
+    dispatch(fetchMovies({ sorted, pageId: pageId * 1 }));
+  }, [sorted, page]);
 
   return (
     <div>
       <h1>Genres</h1>
-      <button>Latest</button>
-      <button>Top Rated</button>
-      <button>Now Playing</button>
+      <button onClick={() => dispatch(onSortPopular())}>Most Viewed</button>
+      <button onClick={() => dispatch(onSortRated())}>Top Rated</button>
+      <button onClick={() => dispatch(onSortLatest())}>Now Playing</button>
+
+      <hr />
+      {movies.map((item) => {
+        return <h4 key={item.id}>{item.title}</h4>;
+      })}
     </div>
   );
 };

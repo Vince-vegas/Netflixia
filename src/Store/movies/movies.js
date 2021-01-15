@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchMovies = createAsyncThunk(
   'movies/FETCH_MOVIES',
-  async (moviesObj, thunkAPI) => {
+  async (moviesObj) => {
     try {
       const onFetchMovies = await fetch(
-        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=4282b08304ac2b491b7051fecc6c26d0&language=en-US&page=${moviesObj.pageId}`
+        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}`
       );
       const data = await onFetchMovies.json();
 
@@ -22,18 +22,18 @@ const moviesSlice = createSlice({
     movies: [],
     isLoading: false,
     sorted: 'popular',
-    page: '1',
+    page: 1,
     totalPage: 10,
     error: '',
   },
   reducers: {
-    SORTED_POPULAR: (state) => {
+    SORTBY_POPULAR: (state) => {
       state.sorted = 'popular';
     },
-    SORTED_RATED: (state) => {
+    SORTBY_RATED: (state) => {
       state.sorted = 'top_rated';
     },
-    SORT_BY_LATEST: (state) => {
+    SORTBY_LATEST: (state) => {
       state.sorted = 'now_playing';
     },
   },
@@ -48,11 +48,19 @@ const moviesSlice = createSlice({
     },
     [fetchMovies.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.sorted = action.meta.arg.sorted;
       state.movies = action.payload;
       state.page = action.meta.arg.pageId;
     },
   },
 });
 
+const { SORTBY_POPULAR, SORTBY_RATED, SORTBY_LATEST } = moviesSlice.actions;
+
+console.log(SORTBY_POPULAR.type);
+
+const onSortPopular = () => ({ type: SORTBY_POPULAR.type });
+const onSortRated = () => ({ type: SORTBY_RATED.type });
+const onSortLatest = () => ({ type: SORTBY_LATEST.type });
+
+export { onSortPopular, onSortRated, onSortLatest };
 export default moviesSlice.reducer;
