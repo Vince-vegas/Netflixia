@@ -1,5 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import moviesReducer from './movies/movies';
 
-const entities = combineReducers();
+const rootReducers = combineReducers({
+  moviesState: moviesReducer,
+});
 
-export default entities;
+export default rootReducers;
