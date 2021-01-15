@@ -1,10 +1,10 @@
 import React, { Fragment, Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Genres from '../Views/Genres';
 import Main from '../Views/Main';
 import PageNotFound from '../Views/PageNotFound';
 
+const Genres = lazy(() => import('../Views/Genres'));
 const TestLoadable = lazy(() => import('../Views/TestLoadable'));
 
 const Routes = () => {
