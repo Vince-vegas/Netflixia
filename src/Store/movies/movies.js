@@ -47,7 +47,7 @@ const moviesSlice = createSlice({
     [fetchMovies.rejected]: (state, action) => {
       state.error = action.error;
       state.isLoading = false;
-      state.sorted = 'popular';
+      // state.sorted = 'popular';
     },
     [fetchMovies.fulfilled]: (state, action) => {
       state.isLoading = false;

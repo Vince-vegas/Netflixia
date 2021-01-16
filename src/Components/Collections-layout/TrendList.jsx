@@ -1,24 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const TrendList = ({ value, handleClick, sortValue, sortPage }) => (
+const TrendList = ({ text, handleEvent, sortValue, currentSort }) => (
   <li className="opt-list">
     <button
       className={`${
-        sortValue === sortPage ? 'opt-btn opt-btn--active' : 'opt-btn'
+        sortValue === currentSort ? 'opt-btn opt-btn--active' : 'opt-btn'
       }`}
-      onClick={handleClick}
+      onClick={handleEvent}
     >
-      {value}
+      {text}
     </button>
   </li>
 );
-
-TrendList.propTypes = {
-  value: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
-  sortValue: PropTypes.string.isRequired,
-  sortPage: PropTypes.string.isRequired,
-};
 
 export default TrendList;
