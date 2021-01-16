@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import '../Styles/genres-layout.scss';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,6 +13,7 @@ import {
 } from '../Store/movies/movies';
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
+import CollectMovies from '../Components/Collect-Movie/CollectMovies';
 
 const Genres = () => {
   const { pageId } = useParams();
@@ -42,37 +42,33 @@ const Genres = () => {
 
   return (
     <div>
-      <Link to="/loadable">Loadable</Link>
       <h1>Genres</h1>
-      <button onClick={sortToPopular}>Most Viewed</button>
-      <button onClick={sortToRated}>Top Rated</button>
-      <button onClick={sortToLatest}>Now Playing</button>
-
       <hr />
-
-      <SortLayout>
-        <TrendList
-          text="Hot"
-          handleEvent={sortToPopular}
-          sortValue="popular"
-          currentSort={sorted}
-        />
-        <TrendList
-          text="Top Rated"
-          handleEvent={sortToRated}
-          sortValue="top_rated"
-          currentSort={sorted}
-        />
-        <TrendList
-          text="Now Playing"
-          handleEvent={sortToLatest}
-          sortValue="now_playing"
-          currentSort={sorted}
-        />
-      </SortLayout>
-      {movies.map((item) => {
-        return <h4 key={item.id}>{item.title}</h4>;
-      })}
+      <div className="main-collections">
+        <div className="container">
+          <SortLayout>
+            <TrendList
+              text="Hot"
+              handleEvent={sortToPopular}
+              sortValue="popular"
+              currentSort={sorted}
+            />
+            <TrendList
+              text="Top Rated"
+              handleEvent={sortToRated}
+              sortValue="top_rated"
+              currentSort={sorted}
+            />
+            <TrendList
+              text="Now Playing"
+              handleEvent={sortToLatest}
+              sortValue="now_playing"
+              currentSort={sorted}
+            />
+          </SortLayout>
+          <CollectMovies moviesArray={movies} />
+        </div>
+      </div>
     </div>
   );
 };
