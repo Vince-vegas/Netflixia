@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const fetchMovieDetails = createAsyncThunk(
   'movie/FETCH_DETAILS',
-  async (detail, thunkAPI) => {
+  async (detailObj, thunkAPI) => {
     try {
       const fetchDetail = await fetch(
-        `https://api.themoviedb.org/3/movie/${detail.id}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${detailObj.id}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US`
       );
-      const detailData = await fetchDetail();
+      const detailData = await fetchDetail.json();
 
       return { details: detailData };
     } catch (error) {
