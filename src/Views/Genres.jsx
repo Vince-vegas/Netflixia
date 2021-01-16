@@ -10,7 +10,7 @@ import {
   onSortPopular,
   onSortRated,
   onSortLatest,
-} from '../Store/movies/movies';
+} from '../Store/movies/moviesReducer';
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
@@ -23,7 +23,7 @@ const Genres = () => {
   const { sorted, page, movies } = moviesContext;
 
   useEffect(() => {
-    console.log(moviesContext);
+    // console.log(moviesContext);
     // the * to conver string into Number
     dispatch(fetchMovies({ sorted, pageId: pageId * 1 }));
   }, [sorted, page]);
@@ -42,6 +42,7 @@ const Genres = () => {
 
   return (
     <div>
+      <a href="/">Main</a>
       <h1>Genres</h1>
       <hr />
       <div className="main-collections">

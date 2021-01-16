@@ -1,5 +1,6 @@
 import React, { Fragment, Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import MovieInfo from '../Views/MovieInfo';
 
 import PageNotFound from '../Views/PageNotFound';
 
@@ -13,7 +14,7 @@ const Routes = () => {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/home/:pageId" component={Genres} key="l20r" />
-
+          <Route exact path="/title/:id" component={MovieInfo} />
           <Route exact path="/404-page" component={PageNotFound} />
           <Redirect to="/404-page" />
         </Switch>
