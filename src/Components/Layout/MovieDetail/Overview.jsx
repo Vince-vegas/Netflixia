@@ -6,18 +6,18 @@ import YoutubeModal from '../../Modal/YoutubeModal';
 import SubText from '../../MovieDetail/SubText';
 
 const Overview = (props) => {
-  const { trailerKey, onWatchTrailer, isPlayTrailer } = props;
+  const { trailerKey, movieActors, onWatchTrailer, isPlayTrailer } = props;
   const {
     poster_path,
     title,
     overview,
-    movieGenres,
-    movieActors,
+    genres,
     original_language,
     runtime,
     release_date,
     vote_average,
   } = props.movieDetails;
+
   return (
     <Fragment>
       <div className="details">
@@ -38,29 +38,32 @@ const Overview = (props) => {
               <div className="other-info">
                 <div className="row">
                   <div className="col-md-7">
-                    {/* <SubText
-                      subTitle="Genre"
-                      subText={movieGenres.map((item) => (
-                        <span className="selection" key={item.id}>
-                          {item.name}
-                        </span>
-                      ))}
-                    /> */}
-                    {/* <SubText
-                      subTitle="Starring"
-                      subText={movieActors.map((item, index) => {
-                        if (index > 4) return;
-                        return (
-                          <Link
-                            to={`/actor/movies/${item.id}`}
-                            className="selection starring"
-                            key={item.id}
-                          >
+                    {genres && (
+                      <SubText
+                        subTitle="Genre"
+                        subText={genres.map((item) => (
+                          <span className="selection" key={item.id}>
                             {item.name}
-                          </Link>
-                        );
-                      })}
-                    /> */}
+                          </span>
+                        ))}
+                      />
+                    )}
+                    {movieActors && (
+                      <SubText
+                        subTitle="Starring"
+                        subText={movieActors.slice(0, 5).map((item) => {
+                          return (
+                            <Link
+                              to={`/actor/movies/${item.id}`}
+                              className="selection starring"
+                              key={item.id}
+                            >
+                              {item.name}
+                            </Link>
+                          );
+                        })}
+                      />
+                    )}
 
                     <SubText subTitle="Language" subText={original_language} />
                   </div>

@@ -30,6 +30,7 @@ const MovieInfo = () => {
           <Overview
             movieDetails={movieDetail}
             trailerKey={trailerKey}
+            movieActors={movieActors}
             isPlayTrailer={playVideo}
             onWatchTrailer={() => setPlayVideo(!playVideo)}
           />
