@@ -4,26 +4,42 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import BackgroundImage from '../Components/Layout/MovieDetail/BackgroundImage';
 import Overview from '../Components/Layout/MovieDetail/Overview';
-import { fetchMovieDetails } from '../Store/MovieInfo/movieInfoReducer';
+import SuggestedMovies from '../Components/Layout/MovieDetail/SuggestedMovies';
+import {
+  fetchMovieDetails,
+  fetchSuggested,
+  resetState,
+} from '../Store/MovieInfo/movieInfoReducer';
 import '../Styles/movie-info.scss';
 
 const MovieInfo = () => {
   const [playVideo, setPlayVideo] = useState(false);
   const { id } = useParams();
   const movieDetailState = useSelector((state) => state.movieDetails);
-  const { movieDetail, movieActors, trailerKey } = movieDetailState;
+  const {
+    movieDetail,
+    movieActors,
+    trailerKey,
+    moviesSuggested,
+    isSuggestLoad,
+    noSuggested,
+  } = movieDetailState;
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // scroll to top when every links get clicked
+    window.scrollTo(0, 0);
     //
-    dispatch(fetchMovieDetails({ id: parseInt(id) }));
-  }, []);
+    dispatch(fetchMovieDetails({ id }));
+    dispatch(fetchSuggested({ id }));
+
+    return () => {
+      dispatch(resetState());
+    };
+  }, [id]);
 
   return (
     <>
-      <div>
-        <h1>Movie Info</h1>
-      </div>
       <div className="mn-item-info">
         <div className="container">
           <BackgroundImage backdrop_path={movieDetail.backdrop_path} />
@@ -36,6 +52,11 @@ const MovieInfo = () => {
           />
         </div>
       </div>
+      <SuggestedMovies
+        isSuggestLoad={isSuggestLoad}
+        suggestMovies={moviesSuggested}
+        noSuggested={noSuggested}
+      />
     </>
   );
 };
