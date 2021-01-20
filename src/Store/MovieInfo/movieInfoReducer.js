@@ -46,7 +46,7 @@ const fetchSuggested = createAsyncThunk(
       // only 12 items for great user experience
       return data.results.slice(0, 12);
     } catch (error) {
-      throw new Error('404', error);
+      throw new Error(error);
     }
   }
 );

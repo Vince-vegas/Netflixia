@@ -34,6 +34,7 @@ const MovieInfo = () => {
     dispatch(fetchSuggested({ id }));
 
     return () => {
+      // resetState when unmounting
       dispatch(resetState());
     };
   }, [id]);

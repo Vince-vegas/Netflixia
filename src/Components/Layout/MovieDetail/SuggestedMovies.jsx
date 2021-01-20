@@ -1,7 +1,7 @@
 import React from 'react';
 import SuggestedCard from '../../Card/SuggestedCard';
 import SuggestError from '../../MovieDetail/SuggestError';
-import SuggestedSpinner from './SuggestedSpinner';
+import ContentSpinner from './ContentSpinner';
 
 const SuggestedMovies = ({ suggestMovies, isSuggestLoad, noSuggested }) => {
   return (
@@ -13,7 +13,7 @@ const SuggestedMovies = ({ suggestMovies, isSuggestLoad, noSuggested }) => {
           </div>
           <div className="row justify-between suggested-row">
             {/* Show Spinner when fetching suggested movies */}
-            {isSuggestLoad && <SuggestedSpinner />}
+            {isSuggestLoad && <ContentSpinner />}
 
             {/* Show Text when no suggested movies */}
             {noSuggested && <SuggestError />}
