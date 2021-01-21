@@ -6,6 +6,8 @@ import PageNotFound from '../Views/PageNotFound';
 
 const Main = lazy(() => import('../Views/Main'));
 const Genres = lazy(() => import('../Views/Genres'));
+const Actors = lazy(() => import('../Views/Actors'));
+const ActorMovies = lazy(() => import('../Views/ActorMovies'));
 
 const Routes = () => {
   return (
@@ -15,6 +17,8 @@ const Routes = () => {
           <Route exact path="/" component={Main} />
           <Route exact path="/home/:pageId" component={Genres} key="l20r" />
           <Route exact path="/title/:id" component={MovieInfo} />
+          <Route exact path="/actors" component={Actors} />
+          <Route exact path="/actor/movies/:id" component={ActorMovies} />
           <Route exact path="/404-page" component={PageNotFound} />
           <Redirect to="/404-page" />
         </Switch>
