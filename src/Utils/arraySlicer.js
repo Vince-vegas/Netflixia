@@ -24,7 +24,7 @@ let sliceBy20 = (dataArray, requiredNum) => {
 };
 
 // COLLECT 24 ITEMS IN array: movies
-let sliceBy24 = (dataArray, requiredNum) => {
+let sliceArrBy24 = (dataArray, requiredNum) => {
   return dataArray.slice(
     movieSliceStart(requiredNum),
     movieSliceEnd(requiredNum)
@@ -39,4 +39,4 @@ let sliceBy24 = (dataArray, requiredNum) => {
 const sliceSuggested = (arrayPara) =>
   arrayPara.filter((item, index) => index < 12);
 
-export { sliceBy24, sliceBy20, sliceSuggested };
+export { sliceArrBy24, sliceBy20, sliceSuggested };

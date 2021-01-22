@@ -1,5 +1,6 @@
 import React, { Fragment, Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import ActorMovies from '../Views/ActorMovies';
 import MovieInfo from '../Views/MovieInfo';
 
 import PageNotFound from '../Views/PageNotFound';
@@ -7,7 +8,7 @@ import PageNotFound from '../Views/PageNotFound';
 const Main = lazy(() => import('../Views/Main'));
 const Genres = lazy(() => import('../Views/Genres'));
 const Actors = lazy(() => import('../Views/Actors'));
-const ActorMovies = lazy(() => import('../Views/ActorMovies'));
+// const ActorMovies = lazy(() => import('../Views/ActorMovies'));
 
 const Routes = () => {
   return (
