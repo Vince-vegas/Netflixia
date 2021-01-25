@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import SearchIcon from '../Assets/SvgIcon/SearchIcon';
+import { onSetSearch } from '../Store/NavSearch/searchReducer';
 
 const NavSearch = () => {
   let history = useHistory();
   const [searchVal, setSearchVal] = useState('');
+  const dispatch = useDispatch();
 
   const handleSearch = (e) => {
     setSearchVal(e.target.value);
@@ -13,6 +16,7 @@ const NavSearch = () => {
   const onSubmitSearch = (e) => {
     e.preventDefault();
 
+    dispatch(onSetSearch(searchVal));
     history.push(`/search?q=${searchVal}`);
     setSearchVal('');
   };

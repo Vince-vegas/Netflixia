@@ -5,20 +5,20 @@ const fetchMovieDetails = createAsyncThunk(
   async (detailObj) => {
     try {
       // Movie Details
-      const fetchDetail = await fetch(
+      const getDetail = await fetch(
         `https://api.themoviedb.org/3/movie/${detailObj.id}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US`
       );
-      const detailData = await fetchDetail.json();
+      const detailData = await getDetail.json();
 
       // Youtube Trailer Key
-      const fetchTrailerKey = await fetch(`https://api.themoviedb.org/3/movie/${detailObj.id}/videos?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US
+      const getTrailerKey = await fetch(`https://api.themoviedb.org/3/movie/${detailObj.id}/videos?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US
     `);
-      const trailerKey = await fetchTrailerKey.json();
+      const trailerKey = await getTrailerKey.json();
 
       // People at Movie
-      const fetchPeople = await fetch(`https://api.themoviedb.org/3/movie/${detailObj.id}/credits?api_key=${process.env.REACT_APP_TMDB_ID}
+      const getPeople = await fetch(`https://api.themoviedb.org/3/movie/${detailObj.id}/credits?api_key=${process.env.REACT_APP_TMDB_ID}
     `);
-      const movieActors = await fetchPeople.json();
+      const movieActors = await getPeople.json();
 
       return {
         details: detailData,

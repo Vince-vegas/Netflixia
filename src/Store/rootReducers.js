@@ -8,7 +8,7 @@ const rootReducers = combineReducers({
   moviesState: moviesReducer,
   movieDetails: movieInfoReducer,
   actorMovies: actorMoviesReducer,
-  navSearch: searchReducer,
+  movieSearched: searchReducer,
 });
 
 export default rootReducers;

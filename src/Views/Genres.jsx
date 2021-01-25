@@ -10,6 +10,7 @@ import {
   onSortPopular,
   onSortRated,
   onSortLatest,
+  onResetState,
 } from '../Store/movies/moviesReducer';
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
@@ -39,6 +40,13 @@ const Genres = () => {
     dispatch(onSortLatest());
   };
   // ====================
+
+  // reset the state when unmount
+  useEffect(() => {
+    return () => {
+      dispatch(onResetState());
+    };
+  }, []);
 
   return (
     <div>

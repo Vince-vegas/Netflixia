@@ -11,6 +11,7 @@ const ActorsLayout = () => {
   useEffect(() => {
     fetchTopActors(1);
 
+    // reset the state when unmount
     return () => {
       dispatch({ type: 'CLEAR_TOP_ACTORS' });
     };

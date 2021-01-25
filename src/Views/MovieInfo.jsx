@@ -33,8 +33,8 @@ const MovieInfo = () => {
     dispatch(fetchMovieDetails({ id }));
     dispatch(fetchSuggested({ id }));
 
+    // reset the state when unmount
     return () => {
-      // resetState when unmounting
       dispatch(resetState());
     };
   }, [id]);

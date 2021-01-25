@@ -36,7 +36,7 @@ const ActorsProvider = (props) => {
     );
 
     const data = await actors.json();
-    console.log(data);
+
     dispatch({ type: 'ACTORS_FETCHED', payload: { actors: data.results } });
     return data;
   };
