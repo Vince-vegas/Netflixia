@@ -4,7 +4,7 @@
 
 every state or reducers are bundle up in "One File" because of the ducks pattern principle. You will see that all commands, events, and data fetching are bundled in one file.
 
-This project is not that large so I choose the **ducks pattern**. I could split all commands and events on its own file if the project has **BACKEND SIDE** on it.
+This project is not that large so I choose the [redux/toolkit](https://redux-toolkit.js.org/)**ducks pattern**. I could split all commands and events on its own file if the project has **BACKEND SIDE** on it.
 
 # Redux Toolkit
 
