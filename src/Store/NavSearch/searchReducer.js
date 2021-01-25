@@ -4,6 +4,12 @@ const searchSlice = createSlice({
   name: 'search-movie',
   initialState: {
     searchedValue: '',
+    searchedMovies: [],
+  },
+  reducers: {
+    onSearchedValue: (state, action) => {
+      state.searchedValue = action.payload.value;
+    },
   },
 });
 

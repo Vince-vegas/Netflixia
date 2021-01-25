@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import CollectMovies from '../Components/Collect-Movie/CollectMovies';
 
 const MovieSearched = (props) => {
+  const query = new URLSearchParams(props.location.search);
+  const titleQuery = query.get('q');
+  useEffect(() => {
+    console.log(titleQuery);
+  }, [titleQuery]);
+
   return (
-    <div>
-      <h1>Movie Searched</h1>
+    <div className="main-collections">
+      <div className="container"></div>
     </div>
   );
 };
