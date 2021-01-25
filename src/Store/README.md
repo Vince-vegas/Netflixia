@@ -15,3 +15,5 @@ The Redux Toolkit package is intended to be the standard way to write Redux logi
 - "Configuring a Redux store is too complicated"
 - "I have to add a lot of packages to get Redux to do anything useful"
 - "Redux requires too much boilerplate code"
+
+Also **Redux Toolkit** has **redux-thunk** by default.
