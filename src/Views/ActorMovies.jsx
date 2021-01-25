@@ -15,7 +15,7 @@ const ActorMovies = () => {
   useEffect(() => {
     dispatch(fetchActorMovies(+id));
   }, []);
-  console.log(slicedMovies);
+
   return (
     <div>
       <h1>Movies</h1>

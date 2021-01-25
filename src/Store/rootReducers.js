@@ -4,6 +4,7 @@ import movieInfoReducer from './MovieInfo/movieInfoReducer';
 import actorMoviesReducer from '../Store/ActorMovies/actorMoviesReducer';
 import searchReducer from '../Store/NavSearch/searchReducer';
 
+// root dir of all actionReducers
 const rootReducers = combineReducers({
   moviesState: moviesReducer,
   movieDetails: movieInfoReducer,

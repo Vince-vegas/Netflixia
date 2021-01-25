@@ -1,15 +1,17 @@
 import React, { Fragment, Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Main from '../Views/Main';
 
+import Main from '../Views/Main';
 import PageNotFound from '../Views/PageNotFound';
 
+// Pages that are CodeSplitting solution
 const Genres = lazy(() => import('../Views/Genres'));
 const MovieInfo = lazy(() => import('../Views/MovieInfo'));
 const Actors = lazy(() => import('../Views/Actors'));
 const ActorMovies = lazy(() => import('../Views/ActorMovies'));
 const MovieSearched = lazy(() => import('../Views/MovieSearched'));
 
+// ROUTES
 const Routes = () => {
   return (
     <Fragment>

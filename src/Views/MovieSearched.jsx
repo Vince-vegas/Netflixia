@@ -5,6 +5,7 @@ import {
   fetchSearchedMovie,
   onResetState,
 } from '../Store/NavSearch/searchReducer';
+import '../Styles/genres-layout.scss';
 
 const MovieSearched = (props) => {
   const query = new URLSearchParams(props.location.search);
@@ -12,7 +13,7 @@ const MovieSearched = (props) => {
   const movieSearchState = useSelector((state) => state.movieSearched);
   const dispatch = useDispatch();
 
-  const { searchedValue, searchedMovie } = movieSearchState;
+  const { searchedValue, searchedMovie, isLoading } = movieSearchState;
 
   useEffect(() => {
     dispatch(fetchSearchedMovie(titleQuery));
@@ -28,6 +29,10 @@ const MovieSearched = (props) => {
   return (
     <div className="main-collections">
       <div className="container">
+        <div className="search-box">
+          <h1 className="search-title">Search Results</h1>
+        </div>
+
         <CollectMovies moviesArray={searchedMovie} />
       </div>
     </div>
