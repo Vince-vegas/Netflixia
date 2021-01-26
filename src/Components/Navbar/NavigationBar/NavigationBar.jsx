@@ -71,6 +71,8 @@ const NavBar = () => {
             <SearchIcon />
           </div>
 
+          {/*  */}
+
           <div className="search-expand" ref={expandSearch}>
             <SubmitForm formClass="search-form" onSubmit={onSubmitSearch}>
               <Button type="submit" className="icon-box">
@@ -79,6 +81,7 @@ const NavBar = () => {
 
               {/* Mobile Search Input */}
               <SearchInput classNameArea="lg-input" refValue={selectSearch} />
+
               <div className="icon-box" onClick={onHideSearch}>
                 <ExitIcon className="ex-icon" />
               </div>

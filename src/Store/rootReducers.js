@@ -3,6 +3,7 @@ import moviesReducer from './movies/moviesReducer';
 import movieInfoReducer from './MovieInfo/movieInfoReducer';
 import actorMoviesReducer from '../Store/ActorMovies/actorMoviesReducer';
 import searchReducer from '../Store/NavSearch/searchReducer';
+import navHandlerReducer from '../Store/NavHandler/navHandlerReducer';
 
 // root dir of all actionReducers
 const rootReducers = combineReducers({
@@ -10,6 +11,7 @@ const rootReducers = combineReducers({
   movieDetails: movieInfoReducer,
   actorMovies: actorMoviesReducer,
   movieSearched: searchReducer,
+  navHandlers: navHandlerReducer,
 });
 
 export default rootReducers;

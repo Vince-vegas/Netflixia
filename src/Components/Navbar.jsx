@@ -1,15 +1,33 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Logo from '../Assets/Logo';
+import MenuIcon from '../Assets/SvgIcon/MenuIcon';
+import { toggleShowGenres } from '../Store/NavHandler/navHandlerReducer';
 import '../Styles/navbar.scss';
 import Menus from './Menus';
 import NavSearch from './NavSearch';
+import NavSearchMobile from './NavSearchMobile';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+
+  const onShowOpts = () => {
+    dispatch(toggleShowGenres());
+  };
+
   return (
     <div className="nav-header">
       <div className="nav-holder">
         <div className="nav-container">
+          <button
+            style={{ background: 'transparent' }}
+            className="toggle-menu"
+            onClick={onShowOpts}
+          >
+            <MenuIcon className="toggle-svg" />
+          </button>
+
           {/* LOGO COM */}
           <div className="logo-box">
             <Link to="/" className="logo">
@@ -23,6 +41,8 @@ const Navbar = () => {
           {/*  */}
 
           <NavSearch />
+
+          <NavSearchMobile />
         </div>
       </div>
     </div>
