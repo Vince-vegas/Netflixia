@@ -5,6 +5,7 @@ import Main from '../Views/Main';
 import PageNotFound from '../Views/PageNotFound';
 
 // Pages that are CodeSplitting solution
+const HomeMovies = lazy(() => import('../Views/HomeMovies'));
 const Genres = lazy(() => import('../Views/Genres'));
 const MovieInfo = lazy(() => import('../Views/MovieInfo'));
 const Actors = lazy(() => import('../Views/Actors'));
@@ -18,8 +19,8 @@ const Routes = () => {
       <Suspense fallback={<div>Page Loading...</div>}>
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route exact path="/home/:pageId" component={Genres} key="l20r" />
-          <Route exact path="/genre/:id" component={Genres} key="g40r" />
+          <Route exact path="/home/:pageId" component={HomeMovies} key="l20r" />
+          <Route exact path="/genre/:pageId" component={Genres} key="g40r" />
           <Route exact path="/title/:id" component={MovieInfo} />
           <Route exact path="/actors" component={Actors} />
           <Route exact path="/actor/movies/:id" component={ActorMovies} />

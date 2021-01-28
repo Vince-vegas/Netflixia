@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { ActorsContext } from '../../../Context/Actors/ActorsProvider';
 import ActorCard from '../../Card/ActorCard';
 

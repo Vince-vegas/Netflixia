@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import '../Styles/genres-layout.scss';
 
@@ -16,7 +15,7 @@ import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
 
-const Genres = () => {
+const HomeMovies = () => {
   const { pageId } = useParams();
   const moviesContext = useSelector((state) => state.moviesState);
   const dispatch = useDispatch();
@@ -79,4 +78,4 @@ const Genres = () => {
   );
 };
 
-export default Genres;
+export default HomeMovies;

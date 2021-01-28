@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-export const fetchMovies = createAsyncThunk(
+// `https://api.themoviedb.org/3/movie/${sort}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${page}&with_genres=${genreId}`
+
+export const fetchHomeMovies = createAsyncThunk(
   'movies/FETCH_MOVIES',
   async (moviesObj) => {
     try {
@@ -15,6 +17,24 @@ export const fetchMovies = createAsyncThunk(
     }
   }
 );
+
+/*
+export const fetchMovies = createAsyncThunk(
+  'movies/FETCH_MOVIES',
+  async (moviesObj) => {
+    try {
+      const getMovies = await fetch(
+        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}&with_genres=${moviesObj.movieId}`
+      );
+      const data = await getMovies.json();
+
+      return data.results;
+    } catch (error) {
+      throw Error('404 test');
+    }
+  }
+);
+*/
 
 const moviesSlice = createSlice({
   name: 'movies',
@@ -51,14 +71,14 @@ const moviesSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchMovies.pending]: (state) => {
+    [fetchHomeMovies.pending]: (state) => {
       state.isLoading = true;
     },
-    [fetchMovies.rejected]: (state, action) => {
+    [fetchHomeMovies.rejected]: (state, action) => {
       state.error = action.error;
       state.isLoading = false;
     },
-    [fetchMovies.fulfilled]: (state, action) => {
+    [fetchHomeMovies.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.movies = action.payload;
       state.page = action.meta.arg.pageId;
