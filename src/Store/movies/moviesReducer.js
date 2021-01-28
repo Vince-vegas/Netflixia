@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-// `https://api.themoviedb.org/3/movie/${sort}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${page}&with_genres=${genreId}`
-
 export const fetchHomeMovies = createAsyncThunk(
   'movies/FETCH_MOVIES',
   async (moviesObj) => {
@@ -21,14 +19,11 @@ export const fetchHomeMovies = createAsyncThunk(
 export const fetchGenreMovies = createAsyncThunk(
   'movies/FETCH_GENRE_MOVIES',
   async (moviesObj) => {
-    console.log(moviesObj);
     try {
       const getMovies = await fetch(
         `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}&with_genres=${moviesObj.genreId}`
       );
       const data = await getMovies.json();
-
-      console.log(data);
 
       return {
         movies: data,
@@ -65,13 +60,17 @@ const moviesSlice = createSlice({
       state.isLoading = true;
     },
     SET_PAGE: (state, action) => {
-      state.page = action.payload.currentPage;
+      state.page = action.payload.page;
+    },
+    SET_GENRE: (state, action) => {
+      state.genreId = action.payload.id;
     },
     resetState: (state) => {
       state.isLoading = false;
       state.sorted = 'popular';
       state.movies = [];
       state.page = 1;
+      state.genreId = 28;
       state.error = {};
     },
   },
@@ -108,6 +107,8 @@ const {
   SORTBY_POPULAR,
   SORTBY_RATED,
   SORTBY_LATEST,
+  SET_PAGE,
+  SET_GENRE,
   resetState,
 } = moviesSlice.actions;
 
@@ -115,8 +116,18 @@ const onSortPopular = () => ({ type: SORTBY_POPULAR.type });
 const onSortRated = () => ({ type: SORTBY_RATED.type });
 const onSortLatest = () => ({ type: SORTBY_LATEST.type });
 
+const onSetPage = (page) => SET_PAGE({ page });
+const onSetGenre = (id) => SET_GENRE({ id });
+
 // reset the state
 const onResetState = () => resetState();
 
-export { onSortPopular, onSortRated, onSortLatest, onResetState };
+export {
+  onSortPopular,
+  onSortRated,
+  onSortLatest,
+  onResetState,
+  onSetPage,
+  onSetGenre,
+};
 export default moviesSlice.reducer;

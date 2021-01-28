@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from 'react';
 import { ActorsContext } from '../../../Context/Actors/ActorsProvider';
 import ActorCard from '../../Card/ActorCard';
+import PageLoad from '../../ShowLoad/PageLoad';
 
 const ActorsLayout = () => {
   const actorsContext = useContext(ActorsContext);
@@ -27,6 +28,9 @@ const ActorsLayout = () => {
           })}
         </div>
       </div>
+
+      {/* Show Spinner when fetching */}
+      {isLoading && <PageLoad />}
     </div>
   );
 };

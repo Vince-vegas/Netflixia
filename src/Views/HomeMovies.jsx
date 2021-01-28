@@ -14,13 +14,14 @@ import {
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
+import PageLoad from '../Components/ShowLoad/PageLoad';
 
 const HomeMovies = () => {
   const { pageId } = useParams();
   const moviesContext = useSelector((state) => state.moviesState);
   const dispatch = useDispatch();
 
-  const { sorted, page, movies } = moviesContext;
+  const { sorted, page, movies, isLoading } = moviesContext;
 
   useEffect(() => {
     // console.log(moviesContext);
@@ -71,6 +72,10 @@ const HomeMovies = () => {
               currentSort={sorted}
             />
           </SortLayout>
+
+          {/* Show Spinner when fetching */}
+          {isLoading && <PageLoad />}
+
           <CollectMovies moviesArray={movies} />
         </div>
       </div>

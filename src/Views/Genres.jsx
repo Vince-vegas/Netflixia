@@ -15,24 +15,25 @@ import {
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
+import PageLoad from '../Components/ShowLoad/PageLoad';
 
 const Genres = () => {
-  const { genreId } = useParams();
+  const { id } = useParams();
   const moviesContext = useSelector((state) => state.moviesState);
   const dispatch = useDispatch();
 
-  const { sorted, page, movies } = moviesContext;
+  const { sorted, page, movies, genreId, isLoading } = moviesContext;
 
   useEffect(() => {
-    // console.log(moviesContext);
-    // the * to conver string into Number
+    // the +id to conver string into Number
     dispatch(
       fetchGenreMovies({
         sorted,
-        genreId: parseInt(genreId),
+        genreId: +id,
+        pageId: page,
       })
     );
-  }, [sorted, page]);
+  }, [sorted, page, genreId]);
 
   // Sorting functions
   const sortToPopular = () => {
@@ -77,6 +78,10 @@ const Genres = () => {
               currentSort={sorted}
             />
           </SortLayout>
+
+          {/* Show Spinner when fetching */}
+          {isLoading && <PageLoad />}
+
           <CollectMovies moviesArray={movies} />
         </div>
       </div>

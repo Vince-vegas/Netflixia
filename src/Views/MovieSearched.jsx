@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
+import PageLoad from '../Components/ShowLoad/PageLoad';
 import {
   fetchSearchedMovie,
   onResetState,
@@ -32,6 +33,9 @@ const MovieSearched = (props) => {
         <div className="search-box">
           <h1 className="search-title">Search Results</h1>
         </div>
+
+        {/* Show Spinner when fetching */}
+        {isLoading && <PageLoad />}
 
         <CollectMovies moviesArray={searchedMovie} />
       </div>
