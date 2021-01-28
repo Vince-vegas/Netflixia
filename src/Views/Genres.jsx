@@ -6,18 +6,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  fetchHomeMovies,
   onSortPopular,
   onSortRated,
   onSortLatest,
   onResetState,
+  fetchGenreMovies,
 } from '../Store/movies/moviesReducer';
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
 
 const Genres = () => {
-  const { pageId } = useParams();
+  const { genreId } = useParams();
   const moviesContext = useSelector((state) => state.moviesState);
   const dispatch = useDispatch();
 
@@ -26,7 +26,12 @@ const Genres = () => {
   useEffect(() => {
     // console.log(moviesContext);
     // the * to conver string into Number
-    dispatch(fetchHomeMovies({ sorted, pageId: parseInt(pageId) }));
+    dispatch(
+      fetchGenreMovies({
+        sorted,
+        genreId: parseInt(genreId),
+      })
+    );
   }, [sorted, page]);
 
   // Sorting functions

@@ -20,7 +20,7 @@ const Routes = () => {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/home/:pageId" component={HomeMovies} key="l20r" />
-          <Route exact path="/genre/:pageId" component={Genres} key="g40r" />
+          <Route exact path="/genre/:genreId" component={Genres} key="g40r" />
           <Route exact path="/title/:id" component={MovieInfo} />
           <Route exact path="/actors" component={Actors} />
           <Route exact path="/actor/movies/:id" component={ActorMovies} />

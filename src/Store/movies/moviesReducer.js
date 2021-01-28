@@ -11,30 +11,34 @@ export const fetchHomeMovies = createAsyncThunk(
       );
       const data = await getMovies.json();
 
-      return data.results;
+      return data;
     } catch (error) {
       throw Error('404 test');
     }
   }
 );
 
-/*
-export const fetchMovies = createAsyncThunk(
-  'movies/FETCH_MOVIES',
+export const fetchGenreMovies = createAsyncThunk(
+  'movies/FETCH_GENRE_MOVIES',
   async (moviesObj) => {
+    console.log(moviesObj);
     try {
       const getMovies = await fetch(
-        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}&with_genres=${moviesObj.movieId}`
+        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}&with_genres=${moviesObj.genreId}`
       );
       const data = await getMovies.json();
 
-      return data.results;
+      console.log(data);
+
+      return {
+        movies: data,
+        genreId: moviesObj.genreId,
+      };
     } catch (error) {
       throw Error('404 test');
     }
   }
 );
-*/
 
 const moviesSlice = createSlice({
   name: 'movies',
@@ -43,6 +47,7 @@ const moviesSlice = createSlice({
     isLoading: false,
     sorted: 'popular',
     page: 1,
+    genreId: 28,
     totalPage: 10,
     error: {},
   },
@@ -80,8 +85,21 @@ const moviesSlice = createSlice({
     },
     [fetchHomeMovies.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.movies = action.payload;
-      state.page = action.meta.arg.pageId;
+      state.movies = action.payload.results;
+      state.page = action.payload.page;
+    },
+    [fetchGenreMovies.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [fetchGenreMovies.rejected]: (state, action) => {
+      state.error = action.error;
+      state.isLoading = false;
+    },
+    [fetchGenreMovies.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.movies = action.payload.movies.results;
+      state.page = action.payload.movies.page;
+      state.genreId = action.payload.genreId;
     },
   },
 });
