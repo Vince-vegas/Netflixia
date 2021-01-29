@@ -2,21 +2,36 @@
 import React, { useContext, useEffect } from 'react';
 import { ActorsContext } from '../../../Context/Actors/ActorsProvider';
 import ActorCard from '../../Card/ActorCard';
+import PagePagination from '../../Pagination/PagePagination';
 import PageLoad from '../../ShowLoad/PageLoad';
 
 const ActorsLayout = () => {
   const actorsContext = useContext(ActorsContext);
 
-  const { isLoading, actors, dispatch, fetchTopActors } = actorsContext;
+  const {
+    isLoading,
+    actors,
+    dispatch,
+    fetchTopActors,
+    totalPage,
+    page,
+    onSetPage,
+  } = actorsContext;
 
   useEffect(() => {
     fetchTopActors(1);
+  }, [page]);
 
+  useEffect(() => {
     // reset the state when unmount
     return () => {
       dispatch({ type: 'CLEAR_TOP_ACTORS' });
     };
   }, []);
+
+  const handleSetPage = (id) => {
+    onSetPage(id);
+  };
 
   return (
     <div className="mn-actors">
@@ -31,6 +46,12 @@ const ActorsLayout = () => {
 
       {/* Show Spinner when fetching */}
       {isLoading && <PageLoad />}
+
+      <PagePagination
+        totalPagination={totalPage}
+        currentPage={page}
+        handleClick={handleSetPage}
+      />
     </div>
   );
 };

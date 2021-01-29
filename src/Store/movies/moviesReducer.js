@@ -5,7 +5,7 @@ export const fetchHomeMovies = createAsyncThunk(
   async (moviesObj) => {
     try {
       const getMovies = await fetch(
-        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}`
+        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.page}`
       );
       const data = await getMovies.json();
 
@@ -43,21 +43,21 @@ const moviesSlice = createSlice({
     sorted: 'popular',
     page: 1,
     genreId: 28,
-    totalPage: 10,
+    totalPage: 5,
     error: {},
   },
   reducers: {
     SORTBY_POPULAR: (state) => {
       state.sorted = 'popular';
-      state.isLoading = true;
+      state.page = 1;
     },
     SORTBY_RATED: (state) => {
       state.sorted = 'top_rated';
-      state.isLoading = true;
+      state.page = 1;
     },
     SORTBY_LATEST: (state) => {
       state.sorted = 'now_playing';
-      state.isLoading = true;
+      state.page = 1;
     },
     SET_PAGE: (state, action) => {
       state.page = action.payload.page;
@@ -85,7 +85,7 @@ const moviesSlice = createSlice({
     [fetchHomeMovies.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.movies = action.payload.results;
-      state.page = action.payload.page;
+      // state.page = action.payload.page;
     },
     [fetchGenreMovies.pending]: (state) => {
       state.isLoading = true;

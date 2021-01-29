@@ -2,26 +2,24 @@ import React from 'react';
 import Button from '../buttons/Button';
 import PropTypes from 'prop-types';
 import '../../Styles/pagination.scss';
+import { genPaginationArray } from '../../Utils/genPaginationArray';
 
-const PagePagination = ({
-  totalPagination,
-  currentPage,
-  handleClick,
-  color,
-}) => {
+const PagePagination = ({ totalPagination, currentPage, handleClick }) => {
   return (
     <div className="pagination">
       <ul className="pgn-menu">
-        {totalPagination.map((item) => {
+        {genPaginationArray(totalPagination).map((id) => {
           return (
-            <li key={item} className="pgn-list">
+            <li key={id} className="pgn-list">
               <Button
-                className={`pgn-link ${color} ${
-                  currentPage === item ? 'pgn-link--active' : ''
-                }`}
-                onClick={handleClick}
+                className={
+                  currentPage === id
+                    ? 'pgn-link pgn-link--active'
+                    : 'pgn-link pgn-link-white'
+                }
+                onClick={handleClick.bind(this, id)}
               >
-                {item}
+                {id}
               </Button>
             </li>
           );
@@ -31,15 +29,10 @@ const PagePagination = ({
   );
 };
 
-PagePagination.defaultProps = {
-  color: 'pgn-link-white',
-};
-
 PagePagination.propTypes = {
-  totalPagination: PropTypes.array.isRequired,
+  totalPagination: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   handleClick: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
 };
 
 export default PagePagination;

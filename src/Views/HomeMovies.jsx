@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import '../Styles/genres-layout.scss';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import {
   fetchHomeMovies,
@@ -10,23 +10,24 @@ import {
   onSortRated,
   onSortLatest,
   onResetState,
+  onSetPage,
 } from '../Store/movies/moviesReducer';
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
 import PageLoad from '../Components/ShowLoad/PageLoad';
+import PagePagination from '../Components/Pagination/PagePagination';
 
 const HomeMovies = () => {
-  const { pageId } = useParams();
   const moviesContext = useSelector((state) => state.moviesState);
   const dispatch = useDispatch();
 
-  const { sorted, page, movies, isLoading } = moviesContext;
+  const { sorted, page, movies, isLoading, totalPage } = moviesContext;
 
   useEffect(() => {
     // console.log(moviesContext);
     // the * to conver string into Number
-    dispatch(fetchHomeMovies({ sorted, pageId: parseInt(pageId) }));
+    dispatch(fetchHomeMovies({ sorted, page }));
   }, [sorted, page]);
 
   // Sorting functions
@@ -40,6 +41,10 @@ const HomeMovies = () => {
     dispatch(onSortLatest());
   };
   // ====================
+
+  const handleSetPage = (id) => {
+    dispatch(onSetPage(id));
+  };
 
   // reset the state when unmount
   useEffect(() => {
@@ -77,6 +82,12 @@ const HomeMovies = () => {
           {isLoading && <PageLoad />}
 
           <CollectMovies moviesArray={movies} />
+
+          <PagePagination
+            totalPagination={totalPage}
+            currentPage={page}
+            handleClick={handleSetPage}
+          />
         </div>
       </div>
     </div>

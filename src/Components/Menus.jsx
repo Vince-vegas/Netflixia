@@ -11,7 +11,7 @@ const Menus = () => {
     <div className={showGenres ? 'nav-center opts-block' : 'nav-center'}>
       <div className="nav-menu">
         <li className="nav-list">
-          <Link className="nav-link" to="/home/1">
+          <Link className="nav-link" to="/home">
             Home
           </Link>
         </li>

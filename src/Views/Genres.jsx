@@ -11,18 +11,20 @@ import {
   onSortLatest,
   onResetState,
   fetchGenreMovies,
+  onSetPage,
 } from '../Store/movies/moviesReducer';
 import SortLayout from '../Components/Layout/SortLayout';
 import TrendList from '../Components/Collections-layout/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
 import PageLoad from '../Components/ShowLoad/PageLoad';
+import PagePagination from '../Components/Pagination/PagePagination';
 
 const Genres = () => {
   const { id } = useParams();
   const moviesContext = useSelector((state) => state.moviesState);
   const dispatch = useDispatch();
 
-  const { sorted, page, movies, genreId, isLoading } = moviesContext;
+  const { sorted, page, movies, genreId, isLoading, totalPage } = moviesContext;
 
   useEffect(() => {
     // the +id to conver string into Number
@@ -46,6 +48,10 @@ const Genres = () => {
     dispatch(onSortLatest());
   };
   // ====================
+
+  const handleSetPage = (id) => {
+    dispatch(onSetPage(id));
+  };
 
   // reset the state when unmount
   useEffect(() => {
@@ -83,6 +89,12 @@ const Genres = () => {
           {isLoading && <PageLoad />}
 
           <CollectMovies moviesArray={movies} />
+
+          <PagePagination
+            totalPagination={totalPage}
+            currentPage={page}
+            handleClick={handleSetPage}
+          />
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ const Routes = () => {
       <Suspense fallback={<div>Page Loading...</div>}>
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route exact path="/home/:pageId" component={HomeMovies} key="l20r" />
+          <Route exact path="/home" component={HomeMovies} key="l20r" />
           <Route exact path="/genre/:id" component={Genres} key="g40r" />
           <Route exact path="/title/:id" component={MovieInfo} />
           <Route exact path="/actors" component={Actors} />

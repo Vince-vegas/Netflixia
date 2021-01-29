@@ -1,4 +1,4 @@
-const genPageLength = (num) => {
+const genPaginationArray = (num) => {
   const numLength = num;
   let arr = [];
   for (let i = 1; i <= numLength; i++) {
@@ -8,4 +8,4 @@ const genPageLength = (num) => {
   return arr;
 };
 
-export { genPageLength };
+export { genPaginationArray };
