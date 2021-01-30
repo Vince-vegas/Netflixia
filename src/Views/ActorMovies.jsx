@@ -31,7 +31,11 @@ const ActorMovies = () => {
     <div className="main-collections">
       <div className="container">
         <div className="search-box">
-          <h1 className="search-title">{`${actorDetail.name}'s Movies`}</h1>
+          <h1 className="search-title">
+            {actorDetail.name
+              ? `${actorDetail.name}'s Movies`
+              : 'His/Her movies'}
+          </h1>
         </div>
 
         {/* Show Spinner when fetching */}
