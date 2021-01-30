@@ -9,6 +9,7 @@ const PagePagination = ({ totalPagination, currentPage, handleClick }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
+
   return (
     <div className="pagination">
       <ul className="pgn-menu">

@@ -30,11 +30,15 @@ const MovieInfo = () => {
     // scroll to top when mount
     window.scrollTo(0, 0);
     //
-    dispatch(fetchMovieDetails({ id }));
-    dispatch(fetchSuggested({ id }));
+    const promDetails = dispatch(fetchMovieDetails({ id }));
+    const promSuggested = dispatch(fetchSuggested({ id }));
 
     // reset the state when unmount
     return () => {
+      // abort fetch when unmount
+      promDetails.abort();
+      promSuggested.abort();
+      //
       dispatch(resetState());
     };
   }, [id]);

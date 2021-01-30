@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchHomeMovies = createAsyncThunk(
   'movies/FETCH_MOVIES',
-  async (moviesObj) => {
+  async (moviesObj, thunkAPI) => {
     try {
       const getMovies = await fetch(
-        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.page}`
+        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.page}`,
+        { signal: thunkAPI.signal }
       );
       const data = await getMovies.json();
 
@@ -18,10 +19,11 @@ export const fetchHomeMovies = createAsyncThunk(
 
 export const fetchGenreMovies = createAsyncThunk(
   'movies/FETCH_GENRE_MOVIES',
-  async (moviesObj) => {
+  async (moviesObj, thunkAPI) => {
     try {
       const getMovies = await fetch(
-        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}&with_genres=${moviesObj.genreId}`
+        `https://api.themoviedb.org/3/movie/${moviesObj.sorted}?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${moviesObj.pageId}&with_genres=${moviesObj.genreId}`,
+        { signal: thunkAPI.signal }
       );
       const data = await getMovies.json();
 

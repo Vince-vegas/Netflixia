@@ -1,18 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-const fetchTopActors = createAsyncThunk('actors/FETCH_ACTORS', async (page) => {
-  try {
-    const getActors = await fetch(
-      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${page}`
-    );
+const fetchTopActors = createAsyncThunk(
+  'actors/FETCH_ACTORS',
+  async (page, thunkAPI) => {
+    try {
+      const getActors = await fetch(
+        `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${page}`,
+        { signal: thunkAPI.signal }
+      );
 
-    const actorsData = await getActors.json();
+      const actorsData = await getActors.json();
 
-    return actorsData;
-  } catch (error) {
-    throw new Error(error);
+      return actorsData;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
-});
+);
 
 const actorSlice = createSlice({
   name: 'actors',

@@ -27,7 +27,12 @@ const HomeMovies = () => {
   useEffect(() => {
     // console.log(moviesContext);
     // the * to conver string into Number
-    dispatch(fetchHomeMovies({ sorted, page }));
+    const promMovies = dispatch(fetchHomeMovies({ sorted, page }));
+
+    // abort fetch when unmount
+    return () => {
+      promMovies.abort();
+    };
   }, [sorted, page]);
 
   // Sorting functions

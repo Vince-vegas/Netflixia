@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import YoutubeIcon from '../../../Assets/SvgIcon/YoutubeIcon';
 import YoutubeModal from '../../Modal/YoutubeModal';
-import SubText from '../../MovieDetail/SubText';
+import SubText from './SubText';
 import ContentSpinner from './ContentSpinner';
 
 const Overview = (props) => {
@@ -100,6 +100,8 @@ const Overview = (props) => {
           </div>
         )}
       </div>
+
+      {/* YOUTUBE MODAL */}
       {isPlayTrailer && (
         <YoutubeModal onPlayTrailer={onWatchTrailer} trailerKey={trailerKey} />
       )}

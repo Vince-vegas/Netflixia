@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Routes from './Routes/Routes';
 import './Styles/main.scss';
+import './Styles/loader.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 

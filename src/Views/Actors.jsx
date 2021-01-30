@@ -23,7 +23,12 @@ const Actors = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchTopActors(page));
+    const promActors = dispatch(fetchTopActors(page));
+
+    // abort fetch when unmount
+    return () => {
+      promActors.abort();
+    };
   }, [page]);
 
   // reset the state when unmount page

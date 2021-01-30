@@ -2,10 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchSearchedMovie = createAsyncThunk(
   'search-movie/FETCH_SEARCH',
-  async (movieName) => {
+  async (movieName, thunkAPI) => {
     try {
-      const getSearchMovie = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&query=${movieName}&page=1&include_adult=false
-    `);
+      const getSearchMovie = await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&query=${movieName}&page=1&include_adult=false
+    `,
+        { signal: thunkAPI.signal }
+      );
 
       const searchedData = await getSearchMovie.json();
 

@@ -17,7 +17,12 @@ const MovieSearched = (props) => {
   const { searchedValue, searchedMovie, isLoading } = movieSearchState;
 
   useEffect(() => {
-    dispatch(fetchSearchedMovie(titleQuery));
+    const promSearched = dispatch(fetchSearchedMovie(titleQuery));
+
+    // abort fetch when unmount
+    return () => {
+      promSearched.abort();
+    };
   }, [searchedValue]);
 
   // reset the state when unmount

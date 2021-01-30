@@ -28,13 +28,18 @@ const Genres = () => {
 
   useEffect(() => {
     // the +id to conver string into Number
-    dispatch(
+    const promGenres = dispatch(
       fetchGenreMovies({
         sorted,
         genreId: +id,
         pageId: page,
       })
     );
+
+    // abort fetch when unmount
+    return () => {
+      promGenres.abort();
+    };
   }, [sorted, page, genreId]);
 
   // Sorting functions

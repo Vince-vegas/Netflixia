@@ -18,10 +18,14 @@ const ActorMovies = () => {
   const { movies, actorDetail, isLoading } = actorMoviesState;
 
   useEffect(() => {
-    dispatch(fetchActorMovies(+id));
+    const promActorMovies = dispatch(fetchActorMovies(+id));
 
     // reset the state when unmount
+
     return () => {
+      // abort fetch when unmount
+      promActorMovies.abort();
+      //
       dispatch(resetState());
     };
   }, []);
