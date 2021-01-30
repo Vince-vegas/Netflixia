@@ -43,6 +43,7 @@ const HomeMovies = () => {
   // ====================
 
   const handleSetPage = (id) => {
+    window.scrollTo(0, 0);
     dispatch(onSetPage(id));
   };
 

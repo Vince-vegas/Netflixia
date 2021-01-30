@@ -19,11 +19,11 @@ const Actors = () => {
   const { isLoading, actors, page, totalPage } = topActors;
 
   const handleSetPage = (id) => {
+    window.scrollTo(0, 0);
     dispatch(onSetPage(id));
   };
 
   useEffect(() => {
-    console.log(1);
     dispatch(fetchTopActors(page));
   }, [page]);
 

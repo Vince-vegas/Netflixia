@@ -27,7 +27,7 @@ const MovieInfo = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // scroll to top when every links get clicked
+    // scroll to top when mount
     window.scrollTo(0, 0);
     //
     dispatch(fetchMovieDetails({ id }));
