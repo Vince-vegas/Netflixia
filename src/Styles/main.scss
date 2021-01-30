@@ -20,6 +20,12 @@ body {
   font-size: 15px;
   font-family: 'Roboto', sans-serif;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#footer-section {
+  margin-top: auto;
 }
 
 .btn {

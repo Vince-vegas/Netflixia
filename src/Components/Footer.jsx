@@ -1,9 +1,10 @@
 import React from 'react';
 import '../Styles/footer.scss';
+import ReactDOM from 'react-dom';
 
 // footer
 const Footer = () => {
-  return (
+  return ReactDOM.createPortal(
     <div className="footer">
       <div className="container">
         <div className="row justify-center">
@@ -19,7 +20,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.getElementById('footer-section')
   );
 };
 
