@@ -13,9 +13,7 @@ const PagePagination = ({ totalPagination, currentPage, handleClick }) => {
             <li key={id} className="pgn-list">
               <Button
                 className={
-                  currentPage === id
-                    ? 'pgn-link pgn-link--active'
-                    : 'pgn-link pgn-link-white'
+                  currentPage === id ? 'pgn-link pgn-link--active' : 'pgn-link'
                 }
                 onClick={handleClick.bind(this, id)}
               >

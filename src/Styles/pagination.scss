@@ -17,7 +17,7 @@
       text-align: center;
       background-color: transparent;
       font-size: 16px;
-
+      color: #3cb1ff;
       border-radius: 100px;
       border: 2px solid transparent;
 
@@ -25,15 +25,8 @@
         border-color: #4a4a4a;
       }
     }
-    .pgn-link-white {
-      color: #fff;
-    }
-    .pgn-link-dark {
-      color: #0f1723;
-    }
 
     .pgn-link--active {
-      color: #57bbff;
       border-color: #3498db !important;
     }
   }

@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ActorCard from '../Components/Card/ActorCard';
 
-import ActorsLayout from '../Components/Layout/Actors/ActorsLayout';
-
 import PagePagination from '../Components/Pagination/PagePagination';
 import PageLoad from '../Components/ShowLoad/PageLoad';
-import ActorsProvider from '../Context/Actors/ActorsProvider';
+
 import {
   onResetState,
   onSetPage,
@@ -25,6 +23,7 @@ const Actors = () => {
   };
 
   useEffect(() => {
+    console.log(1);
     dispatch(fetchTopActors(page));
   }, [page]);
 
@@ -34,8 +33,6 @@ const Actors = () => {
       dispatch(onResetState());
     };
   }, []);
-
-  console.log(1);
 
   return (
     <div className="mn-actors">
