@@ -1,13 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const fetchTopActors = createAsyncThunk('actors/FETCH_ACTORS', async (page) => {
-  const getActors = await fetch(
-    `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${page}`
-  );
+  try {
+    const getActors = await fetch(
+      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_ID}&language=en-US&page=${page}`
+    );
 
-  const actorsData = await getActors.json();
+    const actorsData = await getActors.json();
 
-  return actorsData;
+    return actorsData;
+  } catch (error) {
+    throw new Error(error);
+  }
 });
 
 const actorSlice = createSlice({
@@ -19,6 +23,17 @@ const actorSlice = createSlice({
     totalPage: 5,
     error: {},
   },
+  reducers: {
+    SET_PAGE: (state, action) => {
+      state.page = action.payload.page;
+    },
+    resetState: (state) => {
+      state.isLoading = false;
+      state.actors = [];
+      state.page = 1;
+      state.error = {};
+    },
+  },
   extraReducers: {
     [fetchTopActors.pending]: (state) => {
       state.isLoading = true;
@@ -27,7 +42,17 @@ const actorSlice = createSlice({
       state.isLoading = false;
       state.error = action.error;
     },
+    [fetchTopActors.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.actors = action.payload.results;
+    },
   },
 });
 
+const { SET_PAGE, resetState } = actorSlice.actions;
+
+const onSetPage = (page) => SET_PAGE({ page });
+const onResetState = () => resetState();
+
+export { onResetState, onSetPage, fetchTopActors };
 export default actorSlice.reducer;
