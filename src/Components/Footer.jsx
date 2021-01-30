@@ -1,7 +1,5 @@
 import React from 'react';
-import ImageSrc from '../ImageSrc/ImageSrc';
-import TmDb from '../../Assets/images/movie-db.png';
-import '../../Styles/footer.scss';
+import '../Styles/footer.scss';
 
 // footer
 const Footer = () => {
@@ -12,7 +10,7 @@ const Footer = () => {
           <div className="col-md-6">
             <div className="ft-content">
               <div className="ft-img">
-                <ImageSrc imgSrc={TmDb} />
+                <img src={'/images/movie-db.png'} alt="TMDB" />
               </div>
               <h1 className="footer-text">
                 Developed &amp; designed by Vince Tañan

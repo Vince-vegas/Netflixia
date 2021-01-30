@@ -33,9 +33,14 @@ const fetchMovieDetails = createAsyncThunk(
       );
       const movieActors = await getPeople.json();
 
+      // when a movie has no trailer key add trailerKey a string of no-trailer-key
+      if (trailerKey.results.length < 1) {
+        trailerKey.results.push({ key: 'no-trailer-key' });
+      }
+
       return {
         details: detailData,
-        trailerKey: trailerKey.results[0].key,
+        trailerKey,
         movieActors: movieActors.cast,
         movieId: detailObj.id,
       };
@@ -118,7 +123,7 @@ const movieSlice = createSlice({
       state.isDetailsLoad = false;
       state.movieId = action.payload.movieId;
       state.movieDetail = action.payload.details;
-      state.trailerKey = action.payload.trailerKey;
+      state.trailerKey = action.payload.trailerKey.results[0].key;
       state.movieActors = action.payload.movieActors;
     },
     [fetchSuggested.pending]: (state) => {

@@ -14,7 +14,7 @@ import {
   onSetPage,
 } from '../Store/movies/moviesReducer';
 import SortLayout from '../Components/Layout/SortLayout';
-import TrendList from '../Components/Collections-layout/TrendList';
+import TrendList from '../Components/TrendList';
 import CollectMovies from '../Components/Collect-Movie/CollectMovies';
 import PageLoad from '../Components/ShowLoad/PageLoad';
 import PagePagination from '../Components/Pagination/PagePagination';
@@ -66,41 +66,41 @@ const Genres = () => {
   }, []);
 
   return (
-    <div>
-      <div className="main-collections">
-        <div className="container">
-          <SortLayout>
-            <TrendList
-              text="Hot"
-              handleEvent={sortToPopular}
-              sortValue="popular"
-              currentSort={sorted}
-            />
-            <TrendList
-              text="Top Rated"
-              handleEvent={sortToRated}
-              sortValue="top_rated"
-              currentSort={sorted}
-            />
-            <TrendList
-              text="Now Playing"
-              handleEvent={sortToLatest}
-              sortValue="now_playing"
-              currentSort={sorted}
-            />
-          </SortLayout>
+    <div className="main-collections">
+      <div className="container">
+        <SortLayout>
+          <TrendList
+            text="Hot"
+            handleEvent={sortToPopular}
+            sortValue="popular"
+            currentSort={sorted}
+          />
+          <TrendList
+            text="Top Rated"
+            handleEvent={sortToRated}
+            sortValue="top_rated"
+            currentSort={sorted}
+          />
+          <TrendList
+            text="Now Playing"
+            handleEvent={sortToLatest}
+            sortValue="now_playing"
+            currentSort={sorted}
+          />
+        </SortLayout>
 
-          {/* Show Spinner when fetching */}
-          {isLoading && <PageLoad />}
+        {/* Show Spinner when fetching */}
+        {isLoading && <PageLoad />}
 
-          <CollectMovies moviesArray={movies} />
+        <CollectMovies moviesArray={movies} />
 
+        {!isLoading && (
           <PagePagination
             totalPagination={totalPage}
             currentPage={page}
             handleClick={handleSetPage}
           />
-        </div>
+        )}
       </div>
     </div>
   );

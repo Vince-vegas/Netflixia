@@ -1,5 +1,5 @@
 import React from 'react';
-import SuggestError from '../../MovieDetail/SuggestError';
+import SuggestError from './SuggestError';
 import ContentSpinner from './ContentSpinner';
 import CollectSuggested from '../../Collect-Movie/CollectSuggested';
 
