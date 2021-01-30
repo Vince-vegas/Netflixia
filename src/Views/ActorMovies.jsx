@@ -18,7 +18,6 @@ const ActorMovies = () => {
   const { movies, actorDetail, isLoading } = actorMoviesState;
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     dispatch(fetchActorMovies(+id));
 
     // reset the state when unmount

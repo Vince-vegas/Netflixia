@@ -17,7 +17,6 @@ const MovieSearched = (props) => {
   const { searchedValue, searchedMovie, isLoading } = movieSearchState;
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     dispatch(fetchSearchedMovie(titleQuery));
   }, [searchedValue]);
 
