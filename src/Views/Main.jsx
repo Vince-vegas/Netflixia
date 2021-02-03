@@ -24,8 +24,7 @@ const Main = () => {
                 The Movie DataBase Api
               </a>{' '}
               for retrieving movie data to this site. It's goal is to provide
-              the users to browse all upcoming and excitement movies globally
-              for free.{' '}
+              the users to browse all upcoming and excitement movies for free.{' '}
               <a
                 href="https://developers.themoviedb.org/3"
                 className="link"
