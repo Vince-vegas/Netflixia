@@ -2,9 +2,17 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { onSetGenre } from '../Store/movies/moviesReducer';
+import { toggleShowGenres } from '../Store/NavHandler/navHandlerReducer';
 
 const GenresList = ({ genres }) => {
   const dispatch = useDispatch();
+
+  // Handle setGenre
+  // handle toggleShowGenres for mobile when clicked
+  const handleSetGenre = (id) => {
+    dispatch(onSetGenre(id));
+    dispatch(toggleShowGenres());
+  };
 
   return (
     <li className="nav-list">
@@ -18,7 +26,7 @@ const GenresList = ({ genres }) => {
                   <Link
                     to={`/genre/${id}`}
                     className="opt-link"
-                    onClick={() => dispatch(onSetGenre(id))}
+                    onClick={handleSetGenre.bind(this, id)}
                   >
                     {name}
                   </Link>
