@@ -25,29 +25,33 @@ const navHandlerSlice = createSlice({
       { id: 37, name: 'Western' },
     ],
     showMobileSearch: false,
-    showGenres: false,
+    showMenus: false,
   },
   reducers: {
+    onCloseMenus: (state) => {
+      state.showMenus = false;
+    },
     toggleMobileSearch: (state) => {
       state.showMobileSearch = !state.showMobileSearch;
-      state.showGenres = false;
+      state.showMenus = false;
     },
-    toggleShowGenres: (state) => {
-      state.showGenres = !state.showGenres;
+    toggleShowMenus: (state) => {
+      state.showMenus = !state.showMenus;
       state.showMobileSearch = false;
     },
 
     resetNavHandler: (state) => {
       state.showMobileSearch = false;
-      state.showGenres = false;
+      state.showMenus = false;
     },
   },
 });
 
 export const {
   toggleMobileSearch,
-  toggleShowGenres,
+  toggleShowMenus,
   resetNavHandler,
+  onCloseMenus,
 } = navHandlerSlice.actions;
 
 export default navHandlerSlice.reducer;

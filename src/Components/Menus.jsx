@@ -1,23 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { onCloseMenus } from '../Store/NavHandler/navHandlerReducer';
 
 import GenresList from './GenresList';
 
 const Menus = () => {
-  const { genres, showGenres } = useSelector((state) => state.navHandlers);
+  const { genres, showMenus } = useSelector((state) => state.navHandlers);
+  const dispatch = useDispatch();
+
+  const handleCloseMenus = () => {
+    dispatch(onCloseMenus());
+  };
 
   return (
-    <div className={showGenres ? 'nav-center opts-block' : 'nav-center'}>
+    <div className={showMenus ? 'nav-center opts-block' : 'nav-center'}>
       <div className="nav-menu">
         <li className="nav-list">
-          <Link className="nav-link" to="/home">
+          <Link className="nav-link" to="/home" onClick={handleCloseMenus}>
             Home
           </Link>
         </li>
         <GenresList genres={genres} />
         <li className="nav-list">
-          <Link className="nav-link" to="/actors">
+          <Link className="nav-link" to="/actors" onClick={handleCloseMenus}>
             People
           </Link>
         </li>

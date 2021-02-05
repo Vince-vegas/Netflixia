@@ -2,16 +2,17 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { onSetGenre } from '../Store/movies/moviesReducer';
-import { toggleShowGenres } from '../Store/NavHandler/navHandlerReducer';
+import { onCloseMenus } from '../Store/NavHandler/navHandlerReducer';
 
 const GenresList = ({ genres }) => {
   const dispatch = useDispatch();
 
   // Handle setGenre
   // handle toggleShowGenres for mobile when clicked
+  // when genres got clicked on mobile
   const handleSetGenre = (id) => {
     dispatch(onSetGenre(id));
-    dispatch(toggleShowGenres());
+    dispatch(onCloseMenus());
   };
 
   return (
