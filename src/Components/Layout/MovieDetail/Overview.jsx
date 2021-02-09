@@ -76,7 +76,7 @@ const Overview = (props) => {
                       />
                     </div>
                     <div className="col-md-5">
-                      <SubText subTitle="Duration" subText={`${runtime}min`} />
+                      <SubText subTitle="Duration" subText={`${runtime}mins`} />
                       <SubText subTitle="Release" subText={release_date} />
                       <SubText subTitle="Rating" subText={vote_average} />
                     </div>
